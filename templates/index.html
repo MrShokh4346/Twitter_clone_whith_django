@@ -1,4 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hello world</h1>
+
+<div class="container text-center">
+    
+    <div class="row">
+        <div class="col-8">
+          <h1> Posts</h1><br>
+          {% for post in posts %}
+          <div class="card text-center">
+              <div class="card-header">
+                  <h5><a href="{% url 'profile' post.user.id %}">@{{post.user|lower}}</a></h5>
+              </div>
+              <div class="card-body">
+                  {{post.body}}
+              </div>
+              <div class="card-footer text-muted">
+                  {{post.created}}
+              </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+        <div class="col-4">
+            <br><br><br>
+            {% if request.user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-secondary" type="submit">Post</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
