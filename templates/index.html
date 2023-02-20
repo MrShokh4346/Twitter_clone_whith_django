@@ -22,6 +22,7 @@
             {% endfor %}
         </div>
         <div class="col-4">
+            <center>
             <br><br><br>
             {% if request.user.is_authenticated %}
             <form method="post">
@@ -30,6 +31,7 @@
                 <button class="btn btn-secondary" type="submit">Post</button>
             </form>
             {% endif %}
+            </center>
         </div>
     </div>
 </div>
